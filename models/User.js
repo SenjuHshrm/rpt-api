@@ -18,7 +18,9 @@ const schema = new mongoose.Schema({
     fName: String,
     mName: String,
     lName: String
-  }
+  },
+  address: String,
+  contact: String
 }, { timestamps: true })
 
 schema.methods.isValidPassword = function isValidPassword(password){

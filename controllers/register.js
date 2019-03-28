@@ -15,9 +15,9 @@ exports.regUser = (req,res) => {
   user.setPassword(data.password)
   user.save()
     .then((userRec) => {
-      res.status(200).json({ username: userRec.username, errors: null })
+      res.json({ username: userRec.username, errors: null })
     })
     .catch((err) => {
-      res.status(400).json({ username: null, errors: errorParser(err.errors) })
+      res.json({ username: null, errors: errorParser(err.errors) })
     })
 }
