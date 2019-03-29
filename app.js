@@ -24,6 +24,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: false
 }))
+app.use(express.static(path.join(__dirname, './app/')))
 app.use(function(req,res,next){
   res.header('Access-Control-Allow-Origin','*')
   res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept')
@@ -34,11 +35,11 @@ const loginCtrl = require('./controllers/login')
 const regCtrl = require('./controllers/register')
 
 app
-  .get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
+  .get('/*', (req,res) => {
+    res.sendFile(path.join(__dirname, './app/index.html'))
   })
-  .post('/login', loginCtrl.authUser)
-  .post('/register', regCtrl.regUser)
+  .post('/api/login', loginCtrl.authUser)
+  .post('/api/register', regCtrl.regUser)
 
 app.listen(process.env.PORT, () => {
   console.log('RPT API running at http://localhost:%d', process.env.PORT)
