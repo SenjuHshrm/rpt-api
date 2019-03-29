@@ -30,6 +30,7 @@ schema.methods.isValidPassword = function isValidPassword(password){
 schema.methods.generateToken = function generateToken(){
   var fullName = this.name.fName + ' ' + this.name.mName.charAt(0) + '. ' + this.name.lName
   return jwt.sign({
+    username: this.username,
     name: fullName
   },
   process.env.JWT_SECRET)
